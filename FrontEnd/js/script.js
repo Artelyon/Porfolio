@@ -1,23 +1,23 @@
 
-fetch('http://localhost:5678/api/works')
+console.log("bonjour")
+
+fetch(' http://localhost:8080')
     .then(response => response.json())
     .then(projects => {
         const gallery = document.querySelector('gallery');
-        projects.forEach(projects => {
-            const figure = document.createElement('figure');
-            const img = document.createElement('img');
-            const figcaption = document.createElement('figcaption');
-            img.src = project.imageUrl;
-            img.alt = project.title;
-            figcaption.textContent = project.title;
+        projet.forEach(projet => {
+
+          
+            const img = document.createElement('li');
             
-            gallery.appendChild(figure);
+            img.src = projet.imageUrl;
+            
             figure.appendChild(img);
-            figure.appendChild(figcaption);
-
-
+            
         })
     })
+
+    
     
 
     
