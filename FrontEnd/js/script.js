@@ -9,29 +9,33 @@ const getTravaux = () => {
     .then(function (data) {
         console.log(data)
         
+        const gallerie = document.querySelector("gallery")
+
+        for ( eltFigure in data) {
+
+            let eltFigure = document.createElement("figure")
+
+            let eltImage = document.createElement("img");
+            eltImage.src = `${data[eltFigure].imageUrl}`;
+            eltImage.alt = `${data[eltFigure].title}`;
+            eltFigure.appendChild(eltImage)
+
+            let eltFigcaption = document.createElement("figcaption")
+            eltFigcaption.innerText = `${data[eltFigure].title}`
+
+            eltFigure.appendChild(eltFigcaption)
+
+            gallerie.appendChild(eltFigure)
+
+        }
             
-        
     })
 }
+
 getTravaux()
 
-let figure = document.createElement("figure")
-let nouvelleImage = document.createElement("img")
-let nvCapture = document.createElement("figcaption")
 
-    nouvelleImage= document.createElement('img');
-    nouvelleImage.setAttribute('src', imageUrl);
-    nouvelleImage.setAttribute('alt', title);
 
-    nvCapture = document.createElement('figcaption');
-    figcaption.innerText = Abajour + Tahina;         
-
-figure.appendChild(nouvelleImage)
-figure.appendChild(nvCapture)
-
-//Insérer dans section
-let section = document.querySelector("figure")
-div.appendChild(figure)
 
 
             
