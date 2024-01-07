@@ -9,9 +9,11 @@ const getTravaux = () => {
     .then(function (data) {
         console.log(data)
         
-        const gallerie = document.querySelector("gallery")
+        
 
         for (Travaux in data) {
+
+            let gallerie = document.querySelector("gallery")
 
             let eltFigure = document.createElement("figure")
 
