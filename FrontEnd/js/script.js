@@ -11,19 +11,19 @@ const getTravaux = () => {
         
         const gallerie = document.querySelector("gallery")
 
-        for ( eltFigure in data) {
+        for (Travaux in data) {
 
             let eltFigure = document.createElement("figure")
 
             let eltImage = document.createElement("img");
-            eltImage.src = `${data[eltFigure].imageUrl}`;
-            eltImage.alt = `${data[eltFigure].title}`;
+            eltImage.src = `${data[Travaux].imageUrl}`;
+            eltImage.alt = `${data[Travaux].title}`;
             eltFigure.appendChild(eltImage)
 
-            let eltFigcaption = document.createElement("figcaption")
-            eltFigcaption.innerText = `${data[eltFigure].title}`
+            let eltFigcaption = document.createElement("figcaption");
+            eltFigcaption.innerText = `${data[Travaux].title}`;
 
-            eltFigure.appendChild(eltFigcaption)
+            eltFigure.appendChild(eltFigcaption);
 
             gallerie.appendChild(eltFigure)
 
