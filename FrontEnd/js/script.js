@@ -1,23 +1,22 @@
 const url = 'http://localhost:5678/api/works/'
 const container = document.getElementById("portfolio")
 
-const getTravaux = () => {
+let getTravaux = () => {
     fetch(url)
     .then(function (res) {
         return res.json()
     })
     .then(function (data) {
         console.log(data)
-        
-        
-
-        for (Travaux in data) {
+       
+        data.forEach(function(Travaux) {
 
             let gallerie = document.querySelector("gallery")
 
             let eltFigure = document.createElement("figure")
 
             let eltImage = document.createElement("img");
+            
             eltImage.src = `${data[Travaux].imageUrl}`;
             eltImage.alt = `${data[Travaux].title}`;
             eltFigure.appendChild(eltImage)
@@ -29,19 +28,12 @@ const getTravaux = () => {
 
             gallerie.appendChild(eltFigure)
 
-        }
-            
+        })
+
     })
 }
-
 getTravaux()
-
-
-
-
+            
+           
 
             
-
-
-
-    
