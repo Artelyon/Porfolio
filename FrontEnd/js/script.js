@@ -1,32 +1,31 @@
-const url = 'http://localhost:5678/api/works/'
-const container = document.getElementById("portfolio")
 
-let getTravaux = () => {
-    fetch(url)
+
+const getTravaux = () => {
+    fetch('http://localhost:5678/api/works/')
     .then(function (res) {
         return res.json()
     })
     .then(function (data) {
-        console.log(data)
-       
+        
+        const gallerie = document.querySelector(".gallery")
+
         data.forEach(function(Travaux) {
-
-            let gallerie = document.querySelector("gallery")
-
+            
             let eltFigure = document.createElement("figure")
 
             let eltImage = document.createElement("img");
             
-            eltImage.src = `${data[Travaux].imageUrl}`;
-            eltImage.alt = `${data[Travaux].title}`;
+            eltImage.src = Travaux.imageUrl;
+            eltImage.alt = Travaux.title;
             eltFigure.appendChild(eltImage)
 
             let eltFigcaption = document.createElement("figcaption");
-            eltFigcaption.innerText = `${data[Travaux].title}`;
+            eltFigcaption.innerText = Travaux.title;
 
             eltFigure.appendChild(eltFigcaption);
 
             gallerie.appendChild(eltFigure)
+            
 
         })
 
@@ -35,5 +34,24 @@ let getTravaux = () => {
 getTravaux()
             
            
+const getCategory = () => {
+    fetch('http://localhost:5678/api/categories/')
+    .then(function (res) {
+        return res.json()
+    })
+    .then(function (data) {
+        
+        const categories = document.querySelector("#filtres")
 
+        data.forEach(function(categorie) { 
+        
+            let button = document.createElement("button")
+            button.innerText = categorie.name
+            categories.appendChild(button)
+
+        })
+
+    })
+}
+getCategory()
             
