@@ -25,7 +25,7 @@ const getTravaux = () => {
             eltFigure.appendChild(eltFigcaption);
 
             gallerie.appendChild(eltFigure)
-            
+            console.log(data)
 
         })
 
@@ -54,4 +54,20 @@ const getCategory = () => {
     })
 }
 getCategory()
-            
+
+const FiltreTravaux = () => {
+fetch('http://localhost:5678/api/works/')
+
+.then(function (res) {
+    return res.json()
+})
+
+ categories = document.querySelector("#filtres")
+
+    let button = document.createElement("button")
+    button.innerText =`Tous`
+    categories.appendChild(button)
+}
+
+FiltreTravaux()
+

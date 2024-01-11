@@ -98,6 +98,13 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+#filtres {
+	display: flex;
+	justify-content: center;
+	
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
