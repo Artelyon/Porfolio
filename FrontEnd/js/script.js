@@ -55,7 +55,7 @@ const getCategory = () => {
 }
 getCategory()
 
-const FiltreTravaux = () => {
+const filtreToutTravaux = () => {
 fetch('http://localhost:5678/api/works/')
 
 .then(function (res) {
@@ -69,5 +69,5 @@ fetch('http://localhost:5678/api/works/')
     categories.appendChild(button)
 }
 
-FiltreTravaux()
+filtreToutTravaux()
 
