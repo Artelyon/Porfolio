@@ -103,12 +103,12 @@ li:hover {
 	display: flex;
 	justify-content: center;
 	gap: 1em;
-	padding-top: 25px;
+	padding-top: 27px;
 	padding-bottom: 60px;
 }
 
 button {
-	font-size: 20px;
+	font-size: large;
 	padding: 10px;
 	border-width: 2px;
 	border-color: green;
