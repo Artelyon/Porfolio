@@ -33,7 +33,7 @@ const getTravaux = () => {
 }
 getTravaux()
             
-           
+
 const getCategory = () => {
     fetch('http://localhost:5678/api/categories/')
     .then(function (res) {
@@ -41,33 +41,37 @@ const getCategory = () => {
     })
     .then(function (data) {
         
-        const categories = document.querySelector("#filtres")
+        let categories = document.querySelector("#filtres")
 
+        
         data.forEach(function(categorie) { 
         
             let button = document.createElement("button")
             button.innerText = categorie.name
             categories.appendChild(button)
-
+            })
+            fetch('http://localhost:5678/api/works/')
+            .then(function (res) {
+            return res.json()
         })
-
+        function onButtonClick (event) {
+            console.log(event.currentTarget)
+        }
+        document.querySelectorAll("button").forEach(button =>{
+            button.addEventListener("click", onButtonClick)
+        })
     })
 }
 getCategory()
 
 const filtreToutTravaux = () => {
-fetch('http://localhost:5678/api/works/')
 
-.then(function (res) {
-    return res.json()
-})
-
- categories = document.querySelector("#filtres")
+    categories = document.querySelector("#filtres")
 
     let button = document.createElement("button")
     button.innerText =`Tous`
     categories.appendChild(button)
 }
-
 filtreToutTravaux()
+
 
