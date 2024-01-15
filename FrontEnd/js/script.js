@@ -28,7 +28,6 @@ const getTravaux = () => {
             console.log(data)
 
         })
-
     })
 }
 getTravaux()
@@ -42,24 +41,19 @@ const getCategory = () => {
     .then(function (data) {
         
         let categories = document.querySelector("#filtres")
+            data.forEach(function(categorie) { 
+            console.log(categorie)
 
-        
-        data.forEach(function(categorie) { 
-        
             let button = document.createElement("button")
             button.innerText = categorie.name
+            
             categories.appendChild(button)
             })
+
             fetch('http://localhost:5678/api/works/')
             .then(function (res) {
-            return res.json()
-        })
-        function onButtonClick (event) {
-            console.log(event.currentTarget)
-        }
-        document.querySelectorAll("button").forEach(button =>{
-            button.addEventListener("click", onButtonClick)
-        })
+                return res.json()
+            })
     })
 }
 getCategory()
