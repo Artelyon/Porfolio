@@ -33,6 +33,20 @@ const getTravaux = () => {
     })
 }
 getTravaux()
+
+
+//Création d'un bouton '<button>"Tous"</button> pour afficher tous les travaux"
+const filtreToutTravaux = () => {
+
+    categories = document.querySelector("#filtres")
+
+    let button = document.createElement("button")
+    button.innerText =`Tous`
+    button.setAttribute("class", "coucou")
+    categories.appendChild(button)
+}
+filtreToutTravaux()
+
             
 //Récupération des differents filtres pour les travaux
 const getCategory = () => {
@@ -50,7 +64,7 @@ const getCategory = () => {
 
             let button = document.createElement("button")
             button.innerText = categorie.name
-            
+            button.setAttribute('class', "coucou")
             categories.appendChild(button)
             })
 
@@ -60,19 +74,17 @@ const getCategory = () => {
             .then(function (res) {
                 return res.json()
             })
+                
+                    const boutonActuel= document.querySelector(".coucou");
+                    boutonActuel.addEventListener("click", function() {
+                        console.log("bonjour")
+                    })
+                
+                
+                
     })
 }
 getCategory()
 
-//Création d'un bouton '<button>"Tous"</button> pour afficher tous les travaux"
-const filtreToutTravaux = () => {
-
-    categories = document.querySelector("#filtres")
-
-    let button = document.createElement("button")
-    button.innerText =`Tous`
-    categories.appendChild(button)
-}
-filtreToutTravaux()
 
 
