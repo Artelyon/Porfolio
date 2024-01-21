@@ -161,8 +161,21 @@ button:hover {
 
 .gallery img {
 	width: 100%;
-
 }
+
+#filtres img {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-column-gap: 20px;
+	grid-row-gap: 20px;
+	
+}
+
+.filter__btn filter__btn-id-1 {
+	height: 50%;
+}
+
 #contact {
 	width: 50%;
 margin: auto;

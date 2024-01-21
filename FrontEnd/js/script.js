@@ -1,90 +1,93 @@
+// >>> GENERATION DES PROJETS
 
-//Récuperation de la galerie d'images dans l'API(Swagger) des différents travaux
-const getTravaux = () => {
-    fetch('http://localhost:5678/api/works/')
-    .then(function (res) {
-        return res.json()
-    })
+const sectionProjets = document.querySelector(".gallery"); 
 
-    //Création des éléments du HTML identique au code de départ 
-    .then(function (data) {
-        
-        const gallerie = document.querySelector(".gallery")
+let data = null;
+let id;
+generationProjets(data, null);
 
-        data.forEach(function(Travaux) {
-            
-            let eltFigure = document.createElement("figure")
-
-            let eltImage = document.createElement("img");
-            
-            eltImage.src = Travaux.imageUrl;
-            eltImage.alt = Travaux.title;
-            eltFigure.appendChild(eltImage)
-
-            let eltFigcaption = document.createElement("figcaption");
-            eltFigcaption.innerText = Travaux.title;
-
-            eltFigure.appendChild(eltFigcaption);
-
-            gallerie.appendChild(eltFigure)
-            console.log(data)
-
-        })
-    })
+// Reset la section projets
+function resetSectionProjets() {  
+	sectionProjets.innerHTML = "";
 }
-getTravaux()
+
+// Génère les projets
+async function generationProjets(data, id) { 
+    try {
+        const response = await fetch('http://localhost:5678/api/works'); 
+        data = await response.json();
+    }
+    catch{
+        const p = document.createElement("p");
+        p.classList.add("error");
+        p.innerHTML = "";
+        sectionProjets.appendChild(p);
+        await new Promise(resolve => setTimeout(resolve, 60000));
+        window.location.href = "index.html";
+    }
+
+    resetSectionProjets()
+
+    // Filtre les résultats
+    if ([1, 2, 3].includes(id)) {
+        data = data.filter(data => data.categoryId == id);}
 
 
-//Création d'un bouton '<button>"Tous"</button> pour afficher tous les travaux"
-const filtreToutTravaux = () => {
 
-    categories = document.querySelector("#filtres")
-
-    let button = document.createElement("button")
-    button.innerText =`Tous`
-    button.setAttribute("class", "coucou")
-    categories.appendChild(button)
-}
-filtreToutTravaux()
-
-            
-//Récupération des differents filtres pour les travaux
-const getCategory = () => {
-    fetch('http://localhost:5678/api/categories/')
-    .then(function (res) {
-        return res.json()
-    })
-
-    //Création des éléments "button" à l'intérieur d'une '<div id="filtres"> 'présente dans le HTML
-    .then(function (data) {
-        
-        let categories = document.querySelector("#filtres")
-            data.forEach(function(categorie) { 
-            console.log(categorie)
-
-            let button = document.createElement("button")
-            button.innerText = categorie.name
-            button.setAttribute('class', "coucou")
-            categories.appendChild(button)
-            })
-
-            //récupération des données du tableau dans l'API afin de pouvoir filtrer les travaux de la gallerie selon leur catégorie(Objet, Restaurant, Appartements)
+    // Génère les projets
     
-            fetch('http://localhost:5678/api/works/')
-            .then(function (res) {
-                return res.json()
-            })
-                
-                    const boutonActuel= document.querySelector(".coucou");
-                    boutonActuel.addEventListener("click", function() {
-                        console.log("bonjour")
-                    })
-                
-                
-                
-    })
+        for (let i = 0; i < data.length; i++) {
+            
+            const figure = document.createElement("figure"); 
+            sectionProjets.appendChild(figure);
+            figure.classList.add(`${data[i].id}`); // Ajoute l'id du projet pour le lien vers la modale lors de la supression 
+            const img = document.createElement("img");
+            img.src = data[i].imageUrl;
+            img.alt = data[i].title;
+            figure.appendChild(img);
+
+            const figcaption = document.createElement("figcaption");
+            figcaption.innerHTML = data[i].title;
+            figure.appendChild(figcaption);
+        }
 }
-getCategory()
 
 
+categories = document.querySelector("#filtres")
 
+let btnAll = document.createElement("button")
+    btnAll.innerText =`Tous`
+    btnAll.setAttribute("class", ".filter__btn-id-null")
+    categories.appendChild(btnAll);
+    
+    let btnId1 = document.createElement("button")
+    btnId1.innerText =`Objets`
+    btnId1.setAttribute("class", ".filter__btn-id-1")
+    categories.appendChild(btnId1);
+
+    let btnId2 = document.createElement("button")
+    btnId2.innerText =`Appartements`
+    btnId2.setAttribute("class", ".filter__btn-id-2")
+    categories.appendChild(btnId2)
+     
+    let btnId3 = document.createElement("button")
+    btnId3.innerText =`Hôtels & restaurants`
+    btnId3.setAttribute("class", ".filter__btn-id-3")
+    categories.appendChild(btnId3)
+      
+    
+btnAll.addEventListener("click", () => { // Tous les projets
+    generationProjets(data, 0);})
+
+btnId1.addEventListener("click", () => { // Objets
+    generationProjets(data, 1);})
+
+btnId2.addEventListener("click", () => { // Appartements
+    generationProjets(data, 2);})
+
+btnId3.addEventListener("click", () => { // Hôtels & restaurants
+    generationProjets(data, 3);})
+
+
+//////////////
+// >>> FILTRES
