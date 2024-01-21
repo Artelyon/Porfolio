@@ -17,13 +17,9 @@ async function generationProjets(data, id) {
         const response = await fetch('http://localhost:5678/api/works'); 
         data = await response.json();
     }
-    catch{
-        const p = document.createElement("p");
-        p.classList.add("error");
-        p.innerHTML = "";
-        sectionProjets.appendChild(p);
+    catch {
         await new Promise(resolve => setTimeout(resolve, 60000));
-        window.location.href = "index.html";
+        
     }
 
     resetSectionProjets()
@@ -54,35 +50,31 @@ categories = document.querySelector("#filtres")
 
 let btnAll = document.createElement("button")
     btnAll.innerText =`Tous`
-    
     categories.appendChild(btnAll);
     
-    let btnId1 = document.createElement("button")
-    btnId1.innerText =`Objets`
-    
-    categories.appendChild(btnId1);
+    let btn1 = document.createElement("button")
+    btn1.innerText =`Objets`
+    categories.appendChild(btn1);
 
-    let btnId2 = document.createElement("button")
-    btnId2.innerText =`Appartements`
-    
-    categories.appendChild(btnId2)
+    let btn2 = document.createElement("button")
+    btn2.innerText =`Appartements`
+     categories.appendChild(btn2)
      
-    let btnId3 = document.createElement("button")
-    btnId3.innerText =`Hôtels & restaurants`
-    
-    categories.appendChild(btnId3)
+    let btn3 = document.createElement("button")
+    btn3.innerText =`Hôtels & restaurants`
+    categories.appendChild(btn3)
       
     
 btnAll.addEventListener("click", () => { // Tous les projets
     generationProjets(data, 0);})
 
-btnId1.addEventListener("click", () => { // Objets
+btn1.addEventListener("click", () => { // Objets
     generationProjets(data, 1);})
 
-btnId2.addEventListener("click", () => { // Appartements
+btn2.addEventListener("click", () => { // Appartements
     generationProjets(data, 2);})
 
-btnId3.addEventListener("click", () => { // Hôtels & restaurants
+btn3.addEventListener("click", () => { // Hôtels & restaurants
     generationProjets(data, 3);})
 
 
