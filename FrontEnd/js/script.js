@@ -35,7 +35,7 @@ async function generationTravaux(data, id) {
         figure.appendChild(img);
 
         const figcaption = document.createElement("figcaption");
-        figcaption.innerHTML = data[i].title;
+        figcaption.innerText = data[i].title;
         figure.appendChild(figcaption);
     }
 }
