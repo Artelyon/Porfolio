@@ -4,24 +4,19 @@ const sectionProjets = document.querySelector(".gallery");
 
 let data = null;
 let id;
-generationProjets(data, null);
+generationTravaux(id, null);
 
 // Reset la section projets
 function resetSectionProjets() {  
 	sectionProjets.innerHTML = "";
 }
 
-// Génère les projets
-async function generationProjets(data, id) { 
-    try {
+// Génère la gallerie
+async function generationTravaux(data, id) { 
+    
         const response = await fetch('http://localhost:5678/api/works'); 
         data = await response.json();
-    }
-    catch {
-        await new Promise(resolve => setTimeout(resolve, 60000));
-        
-    }
-
+    
     resetSectionProjets()
 
     // Filtre les résultats
@@ -66,15 +61,15 @@ let btnAll = document.createElement("button")
       
     
 btnAll.addEventListener("click", () => { // Tous les projets
-    generationProjets(data, 0);})
+    generationTravaux(data, 0);})
 
 btn1.addEventListener("click", () => { // Objets
-    generationProjets(data, 1);})
+    generationTravaux(data, 1);})
 
 btn2.addEventListener("click", () => { // Appartements
-    generationProjets(data, 2);})
+    generationTravaux(data, 2);})
 
 btn3.addEventListener("click", () => { // Hôtels & restaurants
-    generationProjets(data, 3);})
+    generationTravaux(data, 3);})
 
 
