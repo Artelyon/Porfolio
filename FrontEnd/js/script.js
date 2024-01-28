@@ -49,7 +49,7 @@ let btnAll = document.createElement("button")
             
     btnAll.addEventListener("click", () => { // Tous les projets
         generationTravaux(data, 0);})
-
+        
     //Récupération de la liste des catégories via l'API pour générer les autres boutons filtres
     const getCategory = () => {
         fetch('http://localhost:5678/api/categories/')
@@ -68,7 +68,7 @@ let btnAll = document.createElement("button")
                 categories.appendChild(button)
                 button.addEventListener("click", () => {
                     generationTravaux(data, 1);
-                    if(Array.categoryId == 2)
+                    if(data.categoryId == 2)
                     generationTravaux(data, 2)
                 })
             })
