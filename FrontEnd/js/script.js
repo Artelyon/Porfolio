@@ -16,7 +16,7 @@ async function generationTravaux(data, id) {
     
         const response = await fetch('http://localhost:5678/api/works'); 
         data = await response.json();
-    
+        console.log(data)
     resetSectionProjets()
 
     // Filtre les résultats
@@ -40,36 +40,41 @@ async function generationTravaux(data, id) {
     }
 }
 
-//Création des boutons filtres
+//Création d'un bouton "Tous" pour les filtres
 categories = document.querySelector("#filtres")
 
 let btnAll = document.createElement("button")
     btnAll.innerText =`Tous`
     categories.appendChild(btnAll);
+            
+    btnAll.addEventListener("click", () => { // Tous les projets
+        generationTravaux(data, 0);})
+
+    //Récupération de la liste des catégories via l'API pour générer les autres boutons filtres
+    const getCategory = () => {
+        fetch('http://localhost:5678/api/categories/')
+        .then(function (res) {
+            return res.json()
+        })
+        .then(function (data) {
+            
+            let categories = document.querySelector("#filtres")
+                
+                data.forEach(function(categorie) { 
+                console.log(categorie)
     
-    let btn1 = document.createElement("button")
-    btn1.innerText =`Objets`
-    categories.appendChild(btn1);
+                let button = document.createElement("button")
+                button.innerText = categorie.name
+                categories.appendChild(button)
+                button.addEventListener("click", () => {
+                    generationTravaux(data, 1);
+                    if(Array.categoryId == 2)
+                    generationTravaux(data, 2)
+                })
+            })
+        }
+    )}
+getCategory()   
 
-    let btn2 = document.createElement("button")
-    btn2.innerText =`Appartements`
-     categories.appendChild(btn2)
-     
-    let btn3 = document.createElement("button")
-    btn3.innerText =`Hôtels & restaurants`
-    categories.appendChild(btn3)
-      
-    
-btnAll.addEventListener("click", () => { // Tous les projets
-    generationTravaux(data, 0);})
-
-btn1.addEventListener("click", () => { // Objets
-    generationTravaux(data, 1);})
-
-btn2.addEventListener("click", () => { // Appartements
-    generationTravaux(data, 2);})
-
-btn3.addEventListener("click", () => { // Hôtels & restaurants
-    generationTravaux(data, 3);})
 
 
