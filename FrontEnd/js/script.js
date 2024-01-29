@@ -66,10 +66,15 @@ let btnAll = document.createElement("button")
                 let button = document.createElement("button")
                 button.innerText = categorie.name
                 categories.appendChild(button)
+
                 button.addEventListener("click", () => {
                     generationTravaux(data, 1);
-                    if(data.categoryId == 2)
-                    generationTravaux(data, 2)
+                    if(EventTarget.id== 2) {
+                    generationTravaux(data, 2);
+                    }
+                    if(EventTarget.id== 3) {
+                    generationTravaux(data, 3);
+                    }
                 })
             })
         }
