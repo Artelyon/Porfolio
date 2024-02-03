@@ -4,7 +4,7 @@ const sectionProjets = document.querySelector(".gallery");
 
 let data = null;
 let id;
-generationTravaux(id, null);
+generationTravaux(data, id);
 
 // Reset la section projets
 function resetSectionProjets() {  
@@ -16,11 +16,12 @@ async function generationTravaux(data, id) {
     
         const response = await fetch('http://localhost:5678/api/works'); 
         data = await response.json();
-        console.log(data)
+       
     resetSectionProjets()
 
     // Filtre les résultats
-    if ([1, 2, 3].includes(id)) {
+    if (id > 0) {
+        console.log(id)
         data = data.filter(data => data.categoryId == id);}
 
     // Génère les projets
@@ -45,6 +46,7 @@ categories = document.querySelector("#filtres")
 
 let btnAll = document.createElement("button")
     btnAll.innerText =`Tous`
+    btnAll.setAttribute("id", 0)
     categories.appendChild(btnAll);
             
     btnAll.addEventListener("click", () => { // Tous les projets
@@ -64,17 +66,12 @@ let btnAll = document.createElement("button")
                 console.log(categorie)
     
                 let button = document.createElement("button")
+                button.setAttribute("id", categorie.id)
                 button.innerText = categorie.name
                 categories.appendChild(button)
 
-                button.addEventListener("click", () => {
-                    generationTravaux(data, 1);
-                    if(EventTarget.id== 2) {
-                    generationTravaux(data, 2);
-                    }
-                    if(EventTarget.id== 3) {
-                    generationTravaux(data, 3);
-                    }
+                button.addEventListener("click", (e) => {
+                    generationTravaux(data, e.currentTarget.id);
                 })
             })
         }
