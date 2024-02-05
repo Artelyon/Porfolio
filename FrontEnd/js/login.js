@@ -4,16 +4,17 @@ function seConnecter() {
 		event.preventDefault();
 
 		
-const log = {
-	email: document.querySelector("[name=email]").value,
-	password: document.querySelector("[name=password").value,
-};
-const chargeUtile = JSON.stringify(log)
+		const user = {
+			email: event.target.querySelector("[name=email]").value,
+			password: event.target.querySelector("[name=password").value,
+		};
+		const chargeUtile = JSON.stringify(user)
 
-fetch('http://localhost:5678/api/users/login', {
-	method: "POST",
-	headers: { "Content-Type": "application/json" },
-	body: chargeUtile
-});
+		fetch('http://localhost:5678/api/users/login', {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: chargeUtile
+		});
 	});
 }
+seConnecter()
